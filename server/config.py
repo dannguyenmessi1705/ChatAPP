@@ -1,4 +1,4 @@
-MONGODB_URL = "mongodb+srv://tuanpluss02:Tuan2002@cluster0.sx8rjmt.mongodb.net/test"
+MONGODB_URL = "mongodb+srv://messiprohy:messiprohy@chatapp.fzf4e46.mongodb.net/?retryWrites=true&w=majority"
 MONGODB_DB_NAME = "chat_app"
 MAX_CONNECTIONS_COUNT = 10
 MIN_CONNECTIONS_COUNT = 1
