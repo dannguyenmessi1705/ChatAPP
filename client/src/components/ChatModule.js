@@ -71,7 +71,7 @@ class ChatModule extends React.Component {
     });
   }
   componentWillUnmount() {
-    //Disconnect websocket (Should update room members in db)
+    // Disconnect websocket (Should update room members in db)
     if (client !== null && client.readyState === WebSocket.OPEN) {
       // Send dismissal message to BE
       var message_obj = {
@@ -83,12 +83,15 @@ class ChatModule extends React.Component {
       console.info("Sending Close Signal to BE");
       if (client !== null) {
         client.send(JSON.stringify(message_obj));
-        this.setState({ message_draft: "" }, this.scrollToBottom);
+        this.scrollToBottom();
       } else {
         client = checkWebSocket(this.state.currentUser, this.state.room_name);
         client.send(JSON.stringify(message_obj));
-        this.setState({ message_draft: "" }, this.scrollToBottom);
+        this.scrollToBottom();
       }
+      client.onclose = () => {
+        this.setState({ message_draft: "" }, this.scrollToBottom);
+      };
       client.close(3000, "Deliberate disconnection");
     }
     document.removeEventListener("click", this.handleDocumentClick);
